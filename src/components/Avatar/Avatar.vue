@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <img src="https://ubisafe.org/images/circle-vector-avatar-3.png" />
-        <div class="icons">
-            <img v-for="(icon, index) in icons" :src="iconMap[icon]" :key="index" class="icon-item" />
+    <div :style="customContainerStyle">
+        <img src="https://ubisafe.org/images/circle-vector-avatar-3.png" :style="customContainerStyle" class="container" />
+        <div class="icons container" :style="customContainerStyle" >
+            <img v-for="(icon, index) in icons" :src="iconMap[icon]" :style="getPosition(index)" :key="index" class="icon-item" />
         </div>
     </div>
 </template>
@@ -13,6 +13,44 @@
             icons: {
                 type: Array,
                 required: true,
+            },
+            avatarSize: {
+                type: Number,
+                required: false,
+                default: 200,
+            }
+        },
+        computed: {
+            customContainerStyle(){
+                return 'height:' + this. avatarSize + 'px;width:' + this.avatarSize + 'px;border-radius:' + this.avatarSize / 2 + 'px;'
+            },
+            positions() {
+                let pos = []
+                switch (this.icons.length) {
+                    case 2:
+                        pos.push({ top: -(this.avatarSize / 8), left: this.avatarSize / 2.66 })
+                        pos.push({ bottom: -(this.avatarSize / 8), left: this.avatarSize / 2.66 })
+                        break;
+                    case 3:
+                        pos.push({ top: -(this.avatarSize / 13.3), left: this.avatarSize / 8 })
+                        pos.push({ bottom: this.avatarSize / 2.66, right: -(this.avatarSize / 8) })
+                        pos.push({ bottom: -(this.avatarSize / 13.3), left: this.avatarSize / 8 })
+                        break;
+                    case 4:
+                        pos.push({ top: 0, left: this.avatarSize / 40 })
+                        pos.push({ top: 0, right: this.avatarSize / 40 })
+                        pos.push({ bottom: 0, right: this.avatarSize / 40 })
+                        pos.push({ bottom: 0, left: this.avatarSize / 40 })
+                        break;
+                    case 5:
+                        pos.push({ top: -(this.avatarSize / 8), left: this.avatarSize / 2.66 })
+                        pos.push({ top: this.avatarSize / 5, right: -(this.avatarSize / 10) })
+                        pos.push({ bottom: -(this.avatarSize / 40), right: this.avatarSize / 20 })
+                        pos.push({ bottom: -(this.avatarSize / 40), left: this.avatarSize / 20 })
+                        pos.push({ top: this.avatarSize / 5, left: -(this.avatarSize / 10) })
+                        break;
+                }
+                return pos
             }
         },
         data() {
@@ -27,23 +65,46 @@
                     youtube: require('./assets/youtube.png'),
                 }
             }
+        },
+        methods: {
+            getPosition(index) {
+                let pos = this.positions[index]
+                let style = ''
+                if(pos.hasOwnProperty("top"))
+                style += 'top:' + pos.top + 'px;'
+                if(pos.hasOwnProperty("left"))
+                style += 'left:' + pos.left + 'px;'
+                if(pos.hasOwnProperty("right"))
+                style += 'right:' + pos.right + 'px;'
+                if(pos.hasOwnProperty("bottom"))
+                style += 'bottom:' + pos.bottom + 'px;'
+                return style
+            }
         }
     }
 </script>
 
 <style scoped>
+.container{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+}
 .icons { 
     display: block;
     -webkit-animation-name: rotate; 
-    -webkit-animation-duration: 1s; 
+    -webkit-animation-duration: 3s; 
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
     -moz-animation-name: rotate; 
-    -moz-animation-duration: 1s; 
+    -moz-animation-duration: 3s; 
     -moz-animation-iteration-count: infinite;
     -moz-animation-timing-function: linear;
     animation-name: rotate; 
-    animation-duration: 1s; 
+    animation-duration: 3s; 
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -64,11 +125,6 @@
 }
 .icon-item{
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
     width: 50px;
     height: 50px;
 }
