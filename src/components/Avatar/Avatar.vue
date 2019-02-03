@@ -1,6 +1,6 @@
 <template>
     <div :style="customContainerStyle">
-        <img src="https://ubisafe.org/images/circle-vector-avatar-3.png" :style="customContainerStyle" class="container" />
+        <img :src="bgImage" :style="customContainerStyle" class="container" />
         <div class="icons container" :style="customContainerStyle" >
             <img v-for="(icon, index) in icons" :src="iconMap[icon]" :style="getPosition(index)" :key="index" class="icon-item" />
         </div>
@@ -18,6 +18,10 @@
                 type: Number,
                 required: false,
                 default: 200,
+            },
+            bgImage: {
+                type: String,
+                required: true,
             }
         },
         computed: {

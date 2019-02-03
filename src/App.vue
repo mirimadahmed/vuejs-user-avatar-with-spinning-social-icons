@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Avatar :icons="['twitter','twitch', 'youtube', 'pinterest', 'spotify']"/>
+    <Avatar :icons="['twitter','twitch', 'youtube', 'pinterest', 'spotify']" bg-image="https://ubisafe.org/images/circle-vector-avatar-3.png"/>
   </div>
 </template>
 
