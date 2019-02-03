@@ -30,7 +30,11 @@
         },
         computed: {
             customContainerStyle(){
-                return 'height:' + this. avatarSize + 'px;width:' + this.avatarSize + 'px;border-radius:' + this.avatarSize / 2 + 'px;'
+                let style = 'height:' + this. avatarSize + 'px;width:' + this.avatarSize + 'px;border-radius:' + this.avatarSize / 2 + 'px;'
+                style += '-webkit-animation-duration: '+ this.duration + 's;'
+                style += '-moz-animation-duration: '+ this.duration + 's;'
+                style += 'animation-duration: '+ this.duration + 's;'
+                return style
             },
             positions() {
                 let pos = []
@@ -108,15 +112,12 @@
 .icons { 
     display: block;
     -webkit-animation-name: rotate; 
-    -webkit-animation-duration: 3s; 
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
     -moz-animation-name: rotate; 
-    -moz-animation-duration: 3s; 
     -moz-animation-iteration-count: infinite;
     -moz-animation-timing-function: linear;
     animation-name: rotate; 
-    animation-duration: 3s; 
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }

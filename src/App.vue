@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       url: 'https://ubisafe.org/images/circle-vector-avatar-3.png',
-      duration: 3, // seconds
+      duration: 5, // seconds
       icons: ['twitter','twitch', 'youtube', 'pinterest', 'spotify']
     }
   }
