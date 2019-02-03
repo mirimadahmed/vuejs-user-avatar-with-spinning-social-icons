@@ -2,7 +2,7 @@
     <div :style="customContainerStyle">
         <img :src="bgImage" :style="customContainerStyle" class="container" />
         <div class="icons container" :style="customContainerStyle" >
-            <img v-for="(icon, index) in icons" :src="iconMap[icon]" :style="getPosition(index)" :key="index" class="icon-item" />
+            <img v-for="(icon, index) in icons" :src="iconMap[icon]" :style="getPosition(index)" :key="index" class="icon-item inner-circle" />
         </div>
     </div>
 </template>
@@ -21,6 +21,10 @@
             },
             bgImage: {
                 type: String,
+                required: true,
+            },
+            duration: {
+                type: Number,
                 required: true,
             }
         },
@@ -82,6 +86,10 @@
                 style += 'right:' + pos.right + 'px;'
                 if(pos.hasOwnProperty("bottom"))
                 style += 'bottom:' + pos.bottom + 'px;'
+                // keep face straight code
+                style += '-webkit-animation-duration: '+ this.duration + 's;'
+                style += '-moz-animation-duration: '+ this.duration + 's;'
+                style += 'animation-duration: '+ this.duration + 's;'
                 return style
             }
         }
@@ -113,6 +121,19 @@
     animation-timing-function: linear;
 }
 
+.inner-circle { 
+    display: block;
+    -webkit-animation-name: inner-circle; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: inner-circle; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: inner-circle; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 @-webkit-keyframes rotate {
     from {-webkit-transform: rotate(0deg);}
     to {-webkit-transform: rotate(360deg);}
@@ -126,6 +147,18 @@
 @keyframes rotate {
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
+}
+@-webkit-keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
+}
+@-moz-keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
+}
+@keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
 }
 .icon-item{
     position: absolute;

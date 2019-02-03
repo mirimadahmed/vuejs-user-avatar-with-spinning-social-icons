@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Avatar :icons="['twitter','twitch', 'youtube', 'pinterest', 'spotify']" bg-image="https://ubisafe.org/images/circle-vector-avatar-3.png"/>
+    <Avatar :icons="icons" :bg-image="url" :duration="duration"/>
   </div>
 </template>
 
@@ -11,6 +11,13 @@ export default {
   name: 'app',
   components: {
     Avatar
+  },
+  data() {
+    return {
+      url: 'https://ubisafe.org/images/circle-vector-avatar-3.png',
+      duration: 3, // seconds
+      icons: ['twitter','twitch', 'youtube', 'pinterest', 'spotify']
+    }
   }
 }
 </script>
