@@ -1,5 +1,7 @@
-# vuejs-user-avatar-with-spinning-social-icons
+# VUE JS User Avatar With Spinning Social Icons
 A customisable vue js based user avatar with spinning social icons around the avatar. You can customise the avatar image and spinning speed.
+
+# How it looks
 ![](avatar.gif)
 
 ## Project setup
